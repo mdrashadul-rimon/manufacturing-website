@@ -1,10 +1,10 @@
 import React from 'react';
 
-const MyItems = ({ myitems }) => {
-    const { name, img } = myitems;
+const MyItems = () => {
+  
     return (
-        <div>
-
+        <div className='grid grid-cols-4 gap-3'>
+           
         </div>
     );
 };

@@ -1,33 +1,23 @@
 import React from 'react';
-import useInventory from '../hooks/useInventory';
+import { useNavigate } from 'react-router-dom';
 
-const Inventory = () => {
-    const [inventory, setInventory] = useInventory();
+const Inventory = ({ inventory }) => {
+    const { _id, name, price, picture, quantity, description, supplier } = inventory;
+    const navigate = useNavigate();
 
-    const handleDelete = id => {
-        const proceed = window.confirm('Are you sure?');
-        if (proceed) {
-            const url = `https://guarded-harbor-99938.herokuapp.com/inventory/${id}`;
-            fetch(url, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    const remaining = inventory.filter(inventories => inventories._id !== id);
-                    setInventory(remaining);
-                })
-        }
+    const navigateToInventoryDetail = id => {
+        navigate(`/inventory/${id}`);
     }
+
     return (
-        <div>
-            <h2>Manage Your Inventory</h2>
-            {
-                inventory.map(inventories => <div
-                    key={inventories._id}>
-                    <h4>{inventories.name} <button onClick={() => handleDelete(inventories._id)}>X</button></h4>
-                </div>)
-            }
+        <div className="border-2 border-gray-600 rounded-lg pb-4 text-center">
+            <img src={picture} alt="" />
+            <h2>{name}</h2>
+            <p>Price: {price}</p>
+            <p className='text-xl'>Stock Available: {quantity}</p>
+            <p className='text-xl'>Supplier: {supplier}</p>
+            <p><small>{description}</small></p>
+            <button onClick={() => navigateToInventoryDetail(_id)} className="px-5 py-2 bg-sky-500 rounded-lg hover:bg-sky-700">Update Stock</button>
         </div>
     );
 };
