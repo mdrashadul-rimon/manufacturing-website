@@ -12,7 +12,7 @@ const ItemList = () => {
     useEffect(() =>{
         const getItemList = async () =>{
             const email = user?.email;
-            const url = `https://guarded-harbor-99938.herokuapp.com/itemList?email=${email}`;
+            const url = `https://guarded-harbor-99938.herokuapp.com/itemlist?email=${email}`;
 
             try{
                 const {data} = await axios.get(url,{

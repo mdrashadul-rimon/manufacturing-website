@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import './Register.css';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Loading/Loading';
 import useToken from '../../hooks/useToken';
+import './Register.css';
 
 
 const Register = () => {
@@ -37,7 +37,6 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        // const agree = event.target.terms.checked;
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
@@ -46,25 +45,28 @@ const Register = () => {
     }
 
     return (
-        <div className='register-form'>
-            <h2 className='text-center'>Please Register</h2>
+
+        <div className='registration-container'>
+            <h2 className='text-center text-2xl text-gray-600 font-bold my-2'>Please Register</h2>
             <form onSubmit={handleRegister}>
-                <input type="text" name="name" id="" placeholder='Your Name' />
+                <input type="text" name="name" placeholder='Your Name' required/>
 
-                <input type="email" name="email" id="" placeholder='Email Address' required />
+                <input type="email" name="email" placeholder='Email Address' required />
 
-                <input type="password" name="password" id="" placeholder='Password' required />
+                <input type="password" name="password" placeholder='Password' required />
+
                 <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
-                
+
                 <label className={`p-2 ${agree ? '' : 'text-rose-600'}`} htmlFor="terms">I Accept Warehouse TechSolution Terms and Conditions</label>
                 <input
                     disabled={!agree}
-                    className='w-50 mx-auto bg-rose-500 mt-2'
+                    className='mx-auto bg-green-500 mt-2'
                     type="submit"
                     value="Register" />
             </form>
-            <p>Already have an account? <Link to="/login" className='text-blue-600 p-4' onClick={navigateLogin}>Login</Link> </p>
+            <p>Already have an account? <Link to="/login" className='text-blue-600 px-4' onClick={navigateLogin}>Login</Link> </p>
             <SocialLogin></SocialLogin>
+
         </div>
     );
 };

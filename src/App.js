@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 import ItemList from './components/ItemList/ItemList';
 
 import Login from './components/Login/Login/Login';
@@ -13,7 +14,7 @@ function App() {
     <div className="App">
       <Header></Header>
       <Routes>
-        {/* <Route path="/" element={<Home></Home>}></Route> */}
+        <Route path="/" element={<Home></Home>}></Route>
         {/* <Route path="/home" element={<Home></Home>}></Route> */}
         {/* <Route path='/service/:serviceId' element={<ServiceDetail></ServiceDetail>}></Route> */}
         {/* <Route path="/about" element={<About></About>}></Route> */}

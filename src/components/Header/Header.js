@@ -41,7 +41,7 @@ const Header = () => {
                         </li>
                         {
                             user && <>
-                                <li>
+                                <li className='md:flex gap-4'>
                                     <Link
                                         to="/addservice"
                                         className="block py-2 px-3 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover: dark:hover:bg-gray-700 dark:hover: md:dark:hover:bg-transparent dark:border-gray-700"
@@ -67,7 +67,9 @@ const Header = () => {
                         <li>
                             {user ?
                                 <div>
+                                    <Link to="/login">
                                     <button onClick={() => signOut(auth)} className="px-8 bg-green-500 rounded-lg hover:bg-yellow-500" >Logout</button>
+                                    </Link>
                                 </div>
                                 :
 

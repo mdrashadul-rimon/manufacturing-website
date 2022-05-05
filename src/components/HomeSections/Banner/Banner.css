@@ -1,0 +1,32 @@
+.banner-container {
+    background: linear-gradient(rgba(69, 67, 172, 0.37), rgba(0, 0, 0, 0.623)), url('https://images.unsplash.com/photo-1588620353536-ded12e518f45');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    height: 80vh;
+}
+
+.header-title {
+    font-family: "Raleway", sans-serif;
+    /* padding: 50px; */
+    font-weight: 900;
+    color: #ffffff;
+    text-align: center;
+}
+
+.header-title button {
+    background-color: #eba00c;
+    font-size: 15px;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: 600;
+    margin: 40px 0 0;
+    transition: 0.3s all;
+}
+
+.header-title button:hover {
+    background-color: #fff;
+    color: #2273f8;
+}
