@@ -4,12 +4,12 @@ import './App.css';
 import AddInventory from './components/AddInventory/AddInventory';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import ItemList from './components/ItemList/ItemList';
-
+import MyItems from './components/HomeSections/MyItems/MyItems';
 import Login from './components/Login/Login/Login';
 import Register from './components/Login/Register/Register';
 import RequireAuth from './components/Login/RequireAuth/RequireAuth';
 import ManageInventory from './components/ManageInventory/ManageInventory';
+import ProceedMyItems from './components/ProceedMyItems/ProceedMyItems';
 import Selected from './components/Selected/Selected';
 
 function App() {
@@ -23,15 +23,20 @@ function App() {
         {/* <Route path="/about" element={<About></About>}></Route> */}
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
-        
+
         <Route path="/inventory/:inventoryId" element={
           <RequireAuth>
             <Selected></Selected>
           </RequireAuth>
         }></Route>
+        <Route path="/proceeditem/:inventoryId" element={
+          <RequireAuth>
+            <ProceedMyItems></ProceedMyItems>
+          </RequireAuth>
+        }></Route>
         <Route path="/addinventory" element={
           <RequireAuth>
-           <AddInventory></AddInventory>
+            <AddInventory></AddInventory>
           </RequireAuth>
         }></Route>
         <Route path="/manageinventory" element={
@@ -39,9 +44,9 @@ function App() {
             <ManageInventory></ManageInventory>
           </RequireAuth>
         }></Route>
-        <Route path="/itemList" element={
+        <Route path="/itemlist" element={
           <RequireAuth>
-            <ItemList></ItemList>
+            <MyItems></MyItems>
           </RequireAuth>
         }></Route>
         {/* <Route path="/inventory" element={

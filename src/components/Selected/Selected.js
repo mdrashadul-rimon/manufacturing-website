@@ -27,7 +27,7 @@ const Selected = () => {
                 const { data } = response;
                 if (data.insertedId) {
                     console.log('data');
-                    toast('Your order is booked');
+                    toast('Update Successfully');
                     event.target.reset();
                 }
             })

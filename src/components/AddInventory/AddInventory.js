@@ -16,8 +16,7 @@ const AddInventory = () => {
         })
         .then(res => res.json())
         .then(result =>{
-            console.log(result);
-            alert('user added successfully');
+            alert('Inventory added successfully');
             data.target.reset();
         })
     }
