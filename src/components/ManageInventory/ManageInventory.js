@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PageTitle from '../PageTitle/PageTitle';
 
 const ManageInventory = () => {
     const [inventories, setInventories] = useState([]);
@@ -29,6 +30,7 @@ const ManageInventory = () => {
 
     return (
         <div className='md:container mx-auto my-5'>
+            <PageTitle title={'Manage'}></PageTitle>
             <h1 className='text-4xl font-bold text-gray-800 my-5'>Manage Inventories</h1>
             <Link to="/addinventory">
             <button className="px-5 py-2 my-5 bg-green-400 rounded hover:bg-green-500 transition hover:text-white">Add New Items</button>

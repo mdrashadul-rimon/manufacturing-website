@@ -14,6 +14,7 @@ const Inventory = ({ inventory }) => {
 
     return (
         <div className="border-2 border-gray-600 py-5 text-gray-800 px-2 rounded-lg">
+            
             <div className="grid rounded-lg pb-4 justify-center items-center">
                 <img className='h-48' src={picture} alt="" />
             </div>

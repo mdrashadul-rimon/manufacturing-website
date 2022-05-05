@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import PageTitle from '../PageTitle/PageTitle';
 
 const AddInventory = () => {
 
@@ -23,6 +24,7 @@ const AddInventory = () => {
 
     return (
         <div className='mx-5'>
+            <PageTitle title={'Add Inventory'}></PageTitle>
             <h2 className='font-bold text-4xl text-gray-700 my-5'>Please Add an Inventory</h2>
 
             <div className='grid'>

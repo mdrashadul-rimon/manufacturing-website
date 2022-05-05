@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Navigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import PageTitle from '../../PageTitle/PageTitle';
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
@@ -33,6 +34,7 @@ const MyItems = () => {
     }, [user])
     return (
         <div className='mx-auto'>
+            <PageTitle title={'My Items'}></PageTitle>
             <h3>Your Items: {itemslist.length}</h3>
             {
                 itemslist.map(items => <div key={items._id}>

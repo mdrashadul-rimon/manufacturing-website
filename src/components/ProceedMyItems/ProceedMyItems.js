@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useInventoryDetails from "../hooks/useInventoryDetails";
+import PageTitle from "../PageTitle/PageTitle";
 
 
 const ProceedMyItems = () => {
@@ -35,6 +36,7 @@ const ProceedMyItems = () => {
 
     return (
         <div className='w-50 mx-auto'>
+            <PageTitle title={'Add Item'}></PageTitle>
             <h2 className="text-4xl font-bold text-gray-700">Please Add an Item</h2>
             <h4 className="text-xl font-bold text-gray-700">Checking out: {inventory.name}</h4>
             <form className="grid grid-cols-2 gap-4" onSubmit={handlePlaceOrder}>
