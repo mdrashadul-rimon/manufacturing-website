@@ -6,6 +6,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Loading/Loading';
 import useToken from '../../hooks/useToken';
 import './Register.css';
+import { toast } from 'react-toastify';
 
 
 const Register = () => {
@@ -29,7 +30,7 @@ const Register = () => {
     }
 
     if (token) {
-        navigate('/home');
+        navigate('/');
     }
 
     const handleRegister = async (event) => {
@@ -40,8 +41,9 @@ const Register = () => {
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+        toast('verification E-mail Sent');
         console.log('Updated profile');
-        navigate('/home');
+        navigate('/');
     }
 
     return (
