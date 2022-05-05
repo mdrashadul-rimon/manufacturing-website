@@ -7,10 +7,10 @@ const InventoryDetails = () => {
     const [inventory] = useInventoryDetails(inventoryId);
     return (
         <div>
-            <h3>Booking Product {inventory.name}</h3>
+            <h3>Selected Product {inventory.name}</h3>
             <div>
-                <Link to={`/checkout/${inventoryId}`}>
-                    <button>Proceed Checkout</button>
+                <Link to={`/selected/${inventoryId}`}>
+                    <button>Proceed Update Product</button>
                 </Link>
             </div>
         </div>

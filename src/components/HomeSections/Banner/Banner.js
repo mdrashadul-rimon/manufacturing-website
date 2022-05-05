@@ -8,9 +8,9 @@ const Banner = () => {
             <div className="banner-container flex items-center justify-center">
                 <div className="header-title">
                     <h3 className="md:text-6xl text-3xl">Warehouse TechSolution</h3>
-                    <p className="md:text-4xl text-2xl">A complete technical solution</p>
-                    <Link to="/manage">
-                        <button>Manage Inventories</button>
+                    <p className="md:text-4xl text-xl">A complete technical solution</p>
+                    <Link to="/about">
+                        <button>Explore TechSolution</button>
                     </Link>
                 </div>
             </div>
