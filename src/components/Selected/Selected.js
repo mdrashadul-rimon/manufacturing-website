@@ -75,6 +75,7 @@ const Selected = () => {
                         <h2 className='text-2xl font-bold pb-5'>{inventory.name}</h2>
                         <p className='font-bold text-xl text-left'>Price: {inventory.price}</p>
                         <p id="stock" className='text-lg text-left'>Stock Available: <span className='text-rose-500 font-bold'>{inventory.quantity}</span></p>
+                        <p id="stock" className='text-lg text-left'>Sold: <span className='text-rose-500 font-bold'>{inventory.sold}</span></p>
                         <p className='text-lg text-left'>Supplier: {inventory.supplier}</p>
                         <p className='text-left'><small>{inventory.description}</small></p>
                         <button className="px-5 py-2 my-2 bg-sky-300 rounded hover:bg-sky-400 transition hover:text-white">Delivered</button>

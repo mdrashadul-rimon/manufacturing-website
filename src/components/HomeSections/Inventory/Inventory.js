@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Inventory = ({ inventory }) => {
-    const { _id, name, price, picture, quantity, description, supplier } = inventory;
+    const { _id, name, price, picture, quantity, description, supplier, sold } = inventory;
     const navigate = useNavigate();
 
     const navigateToInventoryDetail = id => {
@@ -21,6 +21,7 @@ const Inventory = ({ inventory }) => {
             <h2 className='text-2xl font-bold pb-5'>{name}</h2>
             <p className='font-bold text-xl text-left'>Price: {price}</p>
             <p className='text-lg text-left'>Stock Available: <span className='text-rose-500 font-bold'>{quantity}</span></p>
+            <p className='text-lg text-left'>Sold: <span className='text-green-500 font-bold'>{sold}</span></p>
             <p className='text-lg text-left'>Supplier: {supplier}</p>
             <p className='text-left'><small>{description}</small></p>
 
