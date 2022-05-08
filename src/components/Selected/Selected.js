@@ -37,15 +37,15 @@ const Selected = () => {
         event.preventDefault();
         const quantity = event.target.quantity.value;
 
-        const updatedQuantity = {quantity};
+        // const updatedQuantity = {quantity};
 
         const url = `https://guarded-harbor-99938.herokuapp.com/inventory/${id}`;
         fetch(url, {
-            method: 'PUT',
+            method: "PUT",
             headers: {
-                'content-type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedQuantity)
+            body: JSON.stringify({quantity}),
         })
 
         .then(res => res.json())
@@ -93,9 +93,9 @@ const Selected = () => {
                         </form>
 
                         <form onSubmit={handleQuantity}>
-                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="number" name='quantity' placeholder='Add Quantity' required />
+                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5 my-5' type="number" name='quantity' placeholder='Add Quantity' required />
 
-                            <input className='bg-green-500 rounded py-2 px-5 ' type="submit" value="Update Quantity" />
+                            <input className='bg-green-500 rounded py-2 px-5 my-5' type="submit" value="Update Quantity" />
                         </form>
                     </div>
                 </div>
