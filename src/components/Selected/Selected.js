@@ -8,7 +8,7 @@ import auth from '../../firebase.init';
 import PageTitle from '../PageTitle/PageTitle';
 
 const Selected = () => {
-    const { inventoryId } = useParams();
+    const { id, inventoryId } = useParams();
     const [inventory] = useInventoryDetails(inventoryId);
     const [user] = useAuthState(auth);
 
@@ -19,10 +19,10 @@ const Selected = () => {
             inventory: inventory.name,
             inventoryId: inventoryId,
             inventoryquantity: inventory.quantity,
-            address: event.target.address.value,
-            phone: event.target.phone.value
+            quantity: event.target.quantity.value,
+
         }
-        axios.post('https://guarded-harbor-99938.herokuapp.com/itemlist', items)
+        axios.post('https://guarded-harbor-99938.herokuapp.com/inventory', items)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
@@ -32,6 +32,31 @@ const Selected = () => {
                 }
             })
     }
+
+    const handleQuantity = event =>{
+        event.preventDefault();
+        const quantity = event.target.quantity.value;
+
+        const updatedQuantity = {quantity};
+
+        const url = `https://guarded-harbor-99938.herokuapp.com/inventory/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedQuantity)
+        })
+
+        .then(res => res.json())
+        .then(data =>{
+            console.log('success', data);
+            toast('Update Quantity Successfully');
+            event.target.reset();
+        })
+    }
+
+
 
     return (
         <div className='mx-auto'>
@@ -61,10 +86,16 @@ const Selected = () => {
 
                             <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="text" value={user?.displayName} name='name' placeholder='Name' readOnly disabled />
                             <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="email" value={user?.email} name='email' placeholder='Email' readOnly disabled />
-                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="text" value={inventory.name} name='service' placeholder='Product Name' readOnly />
-                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="text" name='address' placeholder='Address' required />
+                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="text" value={inventory.name} name='inventory' placeholder='Product Name' readOnly />
+                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="number" name='quantity' placeholder='Add Quantity' required />
 
                             <input className='bg-green-500 rounded py-2 px-5 ' type="submit" value="Update Stock" />
+                        </form>
+
+                        <form onSubmit={handleQuantity}>
+                            <input className='border-2 border-gray-500 rounded w-100 mb-2 py-3 px-5' type="number" name='quantity' placeholder='Add Quantity' required />
+
+                            <input className='bg-green-500 rounded py-2 px-5 ' type="submit" value="Update Quantity" />
                         </form>
                     </div>
                 </div>
