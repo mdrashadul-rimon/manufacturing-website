@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import axios from 'axios';
@@ -33,11 +33,11 @@ const Selected = () => {
             })
     }
 
-    const handleQuantity = event =>{
+    const handleQuantity = event => {
         event.preventDefault();
         const quantity = event.target.quantity.value;
 
-        // const updatedQuantity = {quantity};
+        const updatedQuantity = { quantity };
 
         const url = `https://guarded-harbor-99938.herokuapp.com/inventory/${id}`;
         fetch(url, {
@@ -45,17 +45,34 @@ const Selected = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({quantity}),
+            body: JSON.stringify(updatedQuantity)
         })
 
-        .then(res => res.json())
-        .then(data =>{
-            console.log('success', data);
-            toast('Update Quantity Successfully');
-            event.target.reset();
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data);
+                toast('Update Quantity Successfully');
+                event.target.reset();
+            })
     }
 
+    const [product, setProduct] = useState({})
+    const { quantity } = product;
+    function removeOne(id) {
+        let newQuantity = quantity - 1;
+        const newProduct = { ...product, quantity: newQuantity }
+        setProduct(newProduct)
+        if (newQuantity > -1) {
+            const url = `https://guarded-harbor-99938.herokuapp.com/inventory/${id}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(newProduct)
+            })
+        }
+    }
 
 
     return (
@@ -75,10 +92,10 @@ const Selected = () => {
                         <h2 className='text-2xl font-bold pb-5'>{inventory.name}</h2>
                         <p className='font-bold text-xl text-left'>Price: {inventory.price}</p>
                         <p id="stock" className='text-lg text-left'>Stock Available: <span className='text-rose-500 font-bold'>{inventory.quantity}</span></p>
-                        <p id="stock" className='text-lg text-left'>Sold: <span className='text-rose-500 font-bold'>{inventory.sold}</span></p>
+                        <p id="stock" className='text-lg text-left'>Sold: <span className='text-green-500 font-bold'>{inventory.quantity}</span></p>
                         <p className='text-lg text-left'>Supplier: {inventory.supplier}</p>
                         <p className='text-left'><small>{inventory.description}</small></p>
-                        <button className="px-5 py-2 my-2 bg-sky-300 rounded hover:bg-sky-400 transition hover:text-white">Delivered</button>
+                        <button onClick={() => removeOne(id)} className="px-5 py-2 my-2 bg-sky-300 rounded hover:bg-sky-400 transition hover:text-white">Delivered</button>
                     </div>
 
                     <div>
